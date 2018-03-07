@@ -13,12 +13,12 @@ html(lang='en')
   body.bg-light
     .container
       .py-5.text-center
-        img.d-block.mx-auto.mb-4(src='https://getbootstrap.com/assets/brand/bootstrap-solid.svg', alt='', width='72', height='72')
+        img.d-block.mx-auto.mb-4(src='https://cdn2.iconfinder.com/data/icons/african-animals/128/rhino-512.png', alt='', width='150', height='150')
         h2= htmlWebpackPlugin.options.h2
         ul.list-unstyled
-          each val in htmlWebpackPlugin.options.posts
-            li= val.name
-            li= val.age
+          //- each val in htmlWebpackPlugin.options.posts
+          //-   li= val.name
+          //-   li= val.age
         p.lead
           | Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state
           | that can be triggered by attempting to submit the form without completing it.

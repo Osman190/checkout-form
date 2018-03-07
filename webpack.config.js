@@ -22,16 +22,16 @@ var config = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Pug Template',
-      h2: 'Samer AbdElsatar',
+      h2: 'Checkout form',
       template: '!!pug-loader!src/template/index.pug',
-      posts: [{
+     /* posts: [{
         name: 'samar',
         age: 18
       }, 
       {
         name: 'Tommy',
         age: 29
-        }]
+        }]*/
     }),
   ]
 }
