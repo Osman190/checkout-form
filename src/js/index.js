@@ -1,3 +1,4 @@
 import $ from 'jquery';
 import 'bootstrap';
-import './main.js';
+import './main.jsx';
+
