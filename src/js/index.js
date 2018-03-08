@@ -1,4 +1,4 @@
-import $ from 'jquery';
 import 'bootstrap';
+import $ from 'jquery';
 import './App.jsx';
 

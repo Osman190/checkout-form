@@ -14,7 +14,7 @@ class Product extends React.Component {
               <button className="btn btn-sm btn-light">-</button>
               <button className="btn btn-sm btn-light">+</button>
             </span>
-            <span className={"badge "+ (this.props.data.amount > 0 ? "badge-primary" : "")}>{this.props.data.amount}</span>
+            <span className={"badge " + (this.props.data.amount > 0 ? "badge-primary" : "")}>{this.props.data.amount}</span>
             <span className="badge">{this.props.data.price}</span>
           </div>
         </li>
