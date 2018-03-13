@@ -5,7 +5,7 @@ class Form extends React.Component {
     return (
       <div className="">
         <h4 className="mb-3">Billing address</h4>
-        <form className="needs-validation">
+        <form className="needs-validation" noValidate="">
           <div className="row">
             <div className="col-md-6 mb-3">
               <label htmlFor="firstName">First name</label>

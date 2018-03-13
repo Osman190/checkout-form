@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Product from './Product.jsx';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
@@ -44,6 +43,12 @@ class App extends React.Component {
         "img": "https://cdn2.iconfinder.com/data/icons/african-animals/128/rhino-512.png",
         "title": "Hello From Blabla",
         "desc": "Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it."
+      },
+      footerdata: {
+        'copyRight': '© 2017-2018 Company Name',
+        'privacy': 'Privacy',
+        'terms': 'Terms',
+        'support': 'Support'
       }
     }
   }
@@ -72,11 +77,11 @@ class App extends React.Component {
             </form>
           </div>
         </div>
-        <Footer />
+        <Footer bla={this.state.footerdata} />
       </React.Fragment>
     )
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+
 export default App;
