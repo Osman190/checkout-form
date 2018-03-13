@@ -40,17 +40,17 @@ class App extends React.Component {
             "price": "49.99"
           }
         ],
-        headerdata: {
-          "img": "https://cdn2.iconfinder.com/data/icons/african-animals/128/rhino-512.png",
-          "title": "Hello From Blabla",
-          "desc": "Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it."
-        }
+      headerdata: {
+        "img": "https://cdn2.iconfinder.com/data/icons/african-animals/128/rhino-512.png",
+        "title": "Hello From Blabla",
+        "desc": "Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it."
+      }
     }
   }
   render() {
     return (
-      <div>
-        <Header data={this.state.headerdata}/>
+      <React.Fragment>
+        <Header data={this.state.headerdata} />
         <div className="row">
           <div className="col-md-8 order-md-1">
             <Form />
@@ -61,10 +61,19 @@ class App extends React.Component {
               <span className="badge badge-secondary badge-pill">3</span>
             </h4>
             {this.state.data.map((item, i) => <Product key={i} data={item} />)}
+            <br />
+            <form className="card p-2">
+              <div className="input-group">
+                <input type="text" className="form-control" placeholder="Promo code" />
+                <div className="input-group-append">
+                  <button type="submit" className="btn btn-secondary">Redeem</button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
         <Footer />
-      </div>
+      </React.Fragment>
     )
   }
 }

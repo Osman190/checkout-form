@@ -3,7 +3,7 @@ import React from 'react';
 class Form extends React.Component {
   render() {
     return (
-      <div className="col-md-8 order-md-1">
+      <div className="">
         <h4 className="mb-3">Billing address</h4>
         <form className="needs-validation">
           <div className="row">
