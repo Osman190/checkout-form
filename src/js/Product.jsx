@@ -9,8 +9,16 @@ class Product extends React.Component {
   }
 
   clickButton(e) {
+    // let liked = this.state.like;
+    // liked = !liked
+    // this.setState({like: liked})
+
+
     this.state.like = !this.state.like
     this.setState(this)
+    console.log(this)
+
+
   }
   render() {
     return (
