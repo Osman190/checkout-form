@@ -8,17 +8,12 @@ class Product extends React.Component {
     this.clickButton = this.clickButton.bind(this);
   }
 
-  clickButton(e) {
-    // let liked = this.state.like;
-    // liked = !liked
-    // this.setState({like: liked})
-
-
-    this.state.like = !this.state.like
-    this.setState(this)
-    console.log(this)
-
-
+  clickButton() {
+    let liked = this.state.like
+    this.setState((like) => ({ like: !liked}))
+  
+    // this.state.like = !this.state.like
+    // this.setState(this)
   }
   render() {
     return (
@@ -27,7 +22,7 @@ class Product extends React.Component {
           <div className="">
             <h6 className="my-0">{this.props.data.name}</h6>
             <small className="text-muted d-block">Release: {this.props.data.release}</small>
-            <button className={"btn btn-sm " + (this.state.like ? "btn-danger" : "btn-outline-danger")} onClick={(e) => this.clickButton(e)}>{this.state.like ? 'Liked' : 'unlike'}</button>
+            <button className={"btn btn-sm " + (this.state.like ? "btn-danger" : "btn-outline-danger")} onClick={(e) => this.clickButton()}>{this.state.like ? 'Like' : 'unlike'}</button>
           </div>
           <div className="d-flex flex-column">
             <span className="text-muted d-flex justify-content-center align-items-baseline">

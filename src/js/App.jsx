@@ -65,7 +65,7 @@ class App extends React.Component {
               <span className="text-muted">Your cart</span>
               <span className="badge badge-secondary badge-pill">3</span>
             </h4>
-            {this.state.data.map((item, i) => <Product key={i} data={item} />)}
+            {this.state.data.map((item, i) => <Product data={item} key={i} />)}
             <br />
             <form className="card p-2">
               <div className="input-group">
