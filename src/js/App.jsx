@@ -7,7 +7,7 @@ import Form from './Form.jsx';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = JSON.parse(localStorage.getItem('react-cart')) || {
+    this.state = JSON.parse(localStorage.getItem('infoData')) || {
       data:
         [
           {
@@ -49,8 +49,35 @@ class App extends React.Component {
         'privacy': 'Privacy',
         'terms': 'Terms',
         'support': 'Support'
-      }
+      },
+      billingInfo: {
+        firstName: '',
+        lastName: '',
+        username: '',
+        email: '',
+        address: '',
+        addressTow: '',
+        country: '',
+        state: '',
+        zip: '',
+      },
+      like: false 
     }
+  }
+  myChanges(id, value) {
+    let data = this.state.billingInfo
+    data[id] = value
+    this.setState((billingInfo) => ({ billingInfo: data }))
+    console.log(this.state.billingInfo)
+    localStorage.setItem("infoData", JSON.stringify({billing: this.state.billingInfo}))
+  }
+  clickButton() {
+    let liked = this.state.like
+    this.setState((like) => ({ like: !liked }))
+    console.log(liked)
+    localStorage.setItem("infoData", JSON.stringify({ hay: this.state.like }))
+    // this.state.like = !this.state.like
+    // this.setState(this)
   }
   render() {
     return (
@@ -58,14 +85,14 @@ class App extends React.Component {
         <Header data={this.state.headerdata} />
         <div className="row">
           <div className="col-md-8 order-md-1">
-            <Form />
+            <Form blabla={this.state} dog={this.myChanges.bind(this)}/>
           </div>
           <div className="col-md-4 order-md-2 mb-4">
             <h4 className="d-flex justify-content-between align-items-center mb-3">
               <span className="text-muted">Your cart</span>
               <span className="badge badge-secondary badge-pill">3</span>
             </h4>
-            {this.state.data.map((item, i) => <Product data={item} key={i} />)}
+            {this.state.data.map((item, i) => <Product data={item} key={i} ninja={this.clickButton.bind(this)} />)}
             <br />
             <form className="card p-2">
               <div className="input-group">

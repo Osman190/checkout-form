@@ -1,29 +1,6 @@
 import React from 'react';
 
 class Form extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = JSON.parse(localStorage.getItem('billingInfo')) || {
-      billingInfo: {
-        firstName: '',
-        lastName: '',
-        username: '',
-        email: '',
-        address: '',
-        addressTow: '',
-        country: '',
-        state: '',
-        zip: '',
-      }
-    }
-  }
-  myChanges(id, value) {
-    let data = this.state.billingInfo
-    data[id] = value
-    this.setState((billingInfo) =>({ billingInfo: data }))
-  console.log(this.state.billingInfo)
-  localStorage.setItem("billingInfo", JSON.stringify(this.state))
-  }
 
 render() {
   return (
@@ -33,14 +10,14 @@ render() {
         <div className="row">
           <div className="col-md-6 mb-3">
             <label htmlFor="firstName">First name</label>
-            <input type="text" className="form-control" id="firstName" placeholder="First Name" value={this.state.billingInfo.firstName} onChange={(e) => this.myChanges(e.target.id, e.target.value)} required="" />
+            <input type="text" className="form-control" id="firstName" placeholder="First Name" value={this.props.blabla.billingInfo.firstName} onChange={(e) => this.props.dog(e.target.id, e.target.value)} required="" />
             <div className="invalid-feedback">
               Valid first name is required.
               </div>
           </div>
           <div className="col-md-6 mb-3">
             <label htmlFor="lastName">Last name</label>
-            <input type="text" className="form-control" id="lastName" placeholder="Last Name" value={this.state.billingInfo.lastName} onChange={(e) => this.myChanges(e.target.id, e.target.value)} required="" />
+            <input type="text" className="form-control" id="lastName" placeholder="Last Name" value={this.props.blabla.billingInfo.lastName} onChange={(e) => this.props.dog(e.target.id, e.target.value)} required="" />
             <div className="invalid-feedback">
               Valid last name is required.
               </div>
@@ -53,7 +30,7 @@ render() {
             <div className="input-group-prepend">
               <span className="input-group-text">@</span>
             </div>
-            <input type="text" className="form-control" id="username" placeholder="Username" value={this.state.billingInfo.Username} onChange={(e) => this.myChanges(e.target.id, e.target.value)} required="" />
+            <input type="text" className="form-control" id="username" placeholder="Username" value={this.props.blabla.billingInfo.Username} onChange={(e) => this.props.dog(e.target.id, e.target.value)} required="" />
             <div className="invalid-feedback w-100" >
               Your username is required.
               </div>
@@ -62,7 +39,7 @@ render() {
 
         <div className="mb-3">
           <label htmlFor="email">Email <span className="text-muted">(Optional)</span></label>
-          <input type="email" className="form-control" id="email" placeholder="you@example.com" value={this.state.billingInfo.email} onChange={(e) => this.myChanges(e.target.id, e.target.value)} required=""/>
+          <input type="email" className="form-control" id="email" placeholder="you@example.com" value={this.props.blabla.billingInfo.email} onChange={(e) => this.props.dog(e.target.id, e.target.value)} required=""/>
           <div className="invalid-feedback">
             Please enter a valid email address for shipping updates.
             </div>
@@ -70,7 +47,7 @@ render() {
 
         <div className="mb-3">
           <label htmlFor="address">Address</label>
-          <input type="text" className="form-control" id="address" placeholder="1234 Main St" value={this.state.billingInfo.address} onChange={(e) => this.myChanges(e.target.id, e.target.value)} required="" />
+          <input type="text" className="form-control" id="address" placeholder="1234 Main St" value={this.props.blabla.billingInfo.address} onChange={(e) => this.props.dog(e.target.id, e.target.value)} required="" />
           <div className="invalid-feedback">
             Please enter your shipping address.
             </div>
@@ -78,13 +55,13 @@ render() {
 
         <div className="mb-3">
           <label htmlFor="address2">Address 2 <span className="text-muted">(Optional)</span></label>
-          <input type="text" className="form-control" id="address2" placeholder="Apartment or suite" value={this.state.billingInfo.addressTow} onChange={(e) => this.myChanges(e.target.id, e.target.value)} />
+          <input type="text" className="form-control" id="address2" placeholder="Apartment or suite" value={this.props.blabla.billingInfo.addressTow} onChange={(e) => this.props.dog(e.target.id, e.target.value)} />
         </div>
 
         <div className="row">
           <div className="col-md-5 mb-3">
             <label htmlFor="country">Country</label>
-            <select className="custom-select d-block w-100" id="country" value={this.state.billingInfo.country} onChange={(e) => this.myChanges(e.target.id, e.target.value)} required="">
+            <select className="custom-select d-block w-100" id="country" value={this.props.blabla.billingInfo.country} onChange={(e) => this.props.dog(e.target.id, e.target.value)} required="">
               <option value="">Choose...</option>
               <option>Germany</option>
             </select>
@@ -94,7 +71,7 @@ render() {
           </div>
           <div className="col-md-4 mb-3">
             <label htmlFor="state">State</label>
-            <select className="custom-select d-block w-100" id="state" value={this.state.billingInfo.state} onChange={(e) => this.myChanges(e.target.id, e.target.value)} required="">
+            <select className="custom-select d-block w-100" id="state" value={this.props.blabla.billingInfo.state} onChange={(e) => this.props.dog(e.target.id, e.target.value)} required="">
               <option value="">Choose...</option>
               <option>Berlin</option>
             </select>
@@ -104,7 +81,7 @@ render() {
           </div>
           <div className="col-md-3 mb-3">
             <label htmlFor="zip">Zip</label>
-            <input type="text" className="form-control" id="zip" placeholder="" value={this.state.billingInfo.zip} onChange={(e) => this.myChanges(e.target.id, e.target.value)} required="" />
+            <input type="text" className="form-control" id="zip" placeholder="" value={this.props.blabla.billingInfo.zip} onChange={(e) => this.props.dog(e.target.id, e.target.value)} required="" />
             <div className="invalid-feedback">
               Zip code required.
               </div>
