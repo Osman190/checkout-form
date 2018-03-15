@@ -5,3 +5,7 @@ import ReactDOM from 'react-dom';
 import App from './App.jsx';
 
 ReactDOM.render( <App / > , document.getElementById('root'));
+
+
+
+{/* <i class="btn icn glyphicon glyphicon-remove-circle" onclick="$('#search-word').val('');$('#search-word').focus();" style="top: 0px;"></i> */}

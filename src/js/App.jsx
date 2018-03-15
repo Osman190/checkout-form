@@ -7,7 +7,7 @@ import Form from './Form.jsx';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = JSON.parse(localStorage.getItem('infoData')) || {
+    this.state = JSON.parse(localStorage.getItem('cart')) || {
       data:
         [
           {
@@ -25,14 +25,14 @@ class App extends React.Component {
             "price": "30.99"
           },
           {
-            "id": 1,
+            "id": 2,
             "name": "Toy",
             "release": "March 2007",
             "amount": 0,
             "price": "20.99"
           },
           {
-            "id": 1,
+            "id": 3,
             "name": "Fuck",
             "release": "March 2007",
             "amount": 0,
@@ -64,35 +64,56 @@ class App extends React.Component {
       like: false 
     }
   }
-  myChanges(id, value) {
+  // handleTheState(){
+  //   this.setState(this.state)
+  // }
+
+
+  userInfo(id, value) {
     let data = this.state.billingInfo
     data[id] = value
     this.setState((billingInfo) => ({ billingInfo: data }))
     console.log(this.state.billingInfo)
-    localStorage.setItem("infoData", JSON.stringify({billing: this.state.billingInfo}))
+    //localStorage.setItem("infoData", JSON.stringify({billing: this.state.billingInfo}))
   }
-  clickButton() {
-    let liked = this.state.like
-    this.setState((like) => ({ like: !liked }))
-    console.log(liked)
-    localStorage.setItem("infoData", JSON.stringify({ hay: this.state.like }))
-    // this.state.like = !this.state.like
-    // this.setState(this)
+
+  updateItem(id, action) {
+    var data = this.state.data
+    
+    if (action === "like") {
+      data[id].like = !data[id].like
+    }
+    else if (action)
+      data[id].amount++
+    else if (data[id].amount > 0)
+      data[id].amount--
+    
+    this.setState((date) => ({data: data}))
+    //localStorage.setItem('cart', JSON.stringify(this.state));
   }
+  
+  // clickButton() {
+  //   let liked = this.state.like
+  //   this.setState((like) => ({ like: !liked }))
+  //   console.log(liked)
+  //   localStorage.setItem("cart", JSON.stringify({ liked: this.state.like }))
+  
+  // }
+
   render() {
     return (
       <React.Fragment>
         <Header data={this.state.headerdata} />
         <div className="row">
           <div className="col-md-8 order-md-1">
-            <Form blabla={this.state} dog={this.myChanges.bind(this)}/>
+            <Form blabla={this.state} dog={this.userInfo.bind(this)}/>
           </div>
           <div className="col-md-4 order-md-2 mb-4">
             <h4 className="d-flex justify-content-between align-items-center mb-3">
               <span className="text-muted">Your cart</span>
               <span className="badge badge-secondary badge-pill">3</span>
             </h4>
-            {this.state.data.map((item, i) => <Product data={item} key={i} ninja={this.clickButton.bind(this)} />)}
+            {this.state.data.map((item, i) => <Product data={item} key={i} updateChildItem={this.updateItem.bind(this)}/>)}
             <br />
             <form className="card p-2">
               <div className="input-group">
