@@ -148,7 +148,7 @@ render() {
           </div>
         </div>
         <hr className="mb-4" />
-        <button className="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+        <button className="btn btn-primary btn-lg btn-block" type="submit" onClick={this.props.haha}>Continue to checkout</button>
       </form>
     </div>
   )
