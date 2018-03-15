@@ -4,6 +4,8 @@ import Header from './Header.jsx';
 import Footer from './Footer.jsx';
 import Form from './Form.jsx';
 import jsPDF from "jspdf";
+import Fetch from './Fetch.jsx';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -63,8 +65,8 @@ class App extends React.Component {
         zip: '',
       },
       like: false,
-      total: 0 
-    }
+      total: 0
+    };
   }
   // handleTheState(){
   //   this.setState(this.state)
@@ -72,34 +74,35 @@ class App extends React.Component {
 
 
   userInfo(id, value) {
-    let data = this.state.billingInfo
-    console.log(data)
-    data[id] = value
-    console.log(data)
-    this.setState({billingInfo: data })
+    let data = this.state.billingInfo;
+    console.log(data);
+    data[id] = value;
+    console.log(data);
+    this.setState({billingInfo: data});
     //localStorage.setItem("infoData", JSON.stringify({billing: this.state.billingInfo}))
   }
-pdfPrint() {
-  var doc = new jsPDF()
 
-  doc.text('Hello world!', 10, 10)
-  doc.save('a4.pdf')
-}
+  printPDF() {
+    var doc = new jsPDF();
+    doc.text('Hello world!', 10, 10);
+    doc.save('a4.pdf');
+  }
+
   updateItem(id, action) {
-    var data = [...this.state.data]
-    console.log(data[id].amount)
-    if (action === "like") 
-      data[id].like = !data[id].like
+    var data = [...this.state.data];
+    console.log(data[id].amount);
+    if (action === "like")
+      data[id].like = !data[id].like;
     else if (action)
-      data[id].amount++
+      data[id].amount++;
     else if (data[id].amount > 0)
-      data[id].amount--
-    var totalPrice = data.map((item) => (item.price * item.amount)).reduce((a, b) => a + b, 0)
-    console.log(data[id].amount)
-    this.setState((e) => ({data: data}, {total: totalPrice}))
+      data[id].amount--;
+    var totalPrice = data.map((item) => (item.price * item.amount)).reduce((a, b) => a + b, 0);
+    console.log(data[id].amount);
+    this.setState((e) => ({ data: data }, { total: totalPrice }));
     //localStorage.setItem('cart', JSON.stringify(this.state));
   }
-  
+
   // clickButton() {
   //   let liked = this.state.like
   //   this.setState((like) => ({ like: !liked }))
@@ -113,14 +116,14 @@ pdfPrint() {
         <Header data={this.state.headerdata} />
         <div className="row">
           <div className="col-md-8 order-md-1">
-            <Form blabla={this.state} dog={this.userInfo.bind(this)} haha={this.pdfPrint.bind(this)}/>
+            <Form blabla={this.state} dog={this.userInfo.bind(this)} haha={this.printPDF.bind(this)} />
           </div>
           <div className="col-md-4 order-md-2 mb-4">
             <h4 className="d-flex justify-content-between align-items-center mb-3">
               <span className="text-muted">Your cart</span>
               <span className="badge badge-secondary badge-pill">{this.state.total.toFixed(2)} $</span>
             </h4>
-            {this.state.data.map((item, i) => <Product data={item} key={i} updateChildItem={this.updateItem.bind(this)}/>)}
+            {this.state.data.map((item, i) => <Product data={item} key={i} updateChildItem={this.updateItem.bind(this)} />)}
             <br />
             <form className="card p-2">
               <div className="input-group">
@@ -132,11 +135,11 @@ pdfPrint() {
             </form>
           </div>
         </div>
+        <Fetch />
         <Footer bla={this.state.footerdata} />
       </React.Fragment>
     )
   }
 }
-
 
 export default App;

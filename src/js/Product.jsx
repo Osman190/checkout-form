@@ -1,7 +1,7 @@
 import React from 'react';
 
 // here we change class componant to a stupid functon componnint and when we use a react component class we need a this keyword and in react also we need a uppercases for naming functon and we also need a return for the functon 
-class Product extends React.Component {
+export default class Product extends React.Component {
  
   render() {
     return (
@@ -25,5 +25,3 @@ class Product extends React.Component {
     )
   }
 }
-
-export default Product;
