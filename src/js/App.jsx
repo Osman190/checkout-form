@@ -14,7 +14,7 @@ class App extends React.Component {
             "id": 0,
             "name": "Car",
             "release": "September 2010",
-            "amount": 1,
+            "amount": 0,
             "price": "700"
           },
           {
@@ -61,7 +61,8 @@ class App extends React.Component {
         state: '',
         zip: '',
       },
-      like: false 
+      like: false,
+      total: 0 
     }
   }
   // handleTheState(){
@@ -71,24 +72,25 @@ class App extends React.Component {
 
   userInfo(id, value) {
     let data = this.state.billingInfo
+    console.log(data)
     data[id] = value
-    this.setState((billingInfo) => ({ billingInfo: data }))
-    console.log(this.state.billingInfo)
+    console.log(data)
+    this.setState({billingInfo: data })
     //localStorage.setItem("infoData", JSON.stringify({billing: this.state.billingInfo}))
   }
 
   updateItem(id, action) {
-    var data = this.state.data
-    
-    if (action === "like") {
+    var data = [...this.state.data]
+    console.log(data[id].amount)
+    if (action === "like") 
       data[id].like = !data[id].like
-    }
     else if (action)
       data[id].amount++
     else if (data[id].amount > 0)
       data[id].amount--
-    
-    this.setState((date) => ({data: data}))
+    var totalPrice = data.map(item => item.price * item.amount).reduce((a, b) => a + b, 0)
+    console.log(data[id].amount)
+    this.setState((e) => ({data: data}, {total: totalPrice}))
     //localStorage.setItem('cart', JSON.stringify(this.state));
   }
   
@@ -97,7 +99,6 @@ class App extends React.Component {
   //   this.setState((like) => ({ like: !liked }))
   //   console.log(liked)
   //   localStorage.setItem("cart", JSON.stringify({ liked: this.state.like }))
-  
   // }
 
   render() {
@@ -111,7 +112,7 @@ class App extends React.Component {
           <div className="col-md-4 order-md-2 mb-4">
             <h4 className="d-flex justify-content-between align-items-center mb-3">
               <span className="text-muted">Your cart</span>
-              <span className="badge badge-secondary badge-pill">3</span>
+              <span className="badge badge-secondary badge-pill">{this.state.total.toFixed(2)} $</span>
             </h4>
             {this.state.data.map((item, i) => <Product data={item} key={i} updateChildItem={this.updateItem.bind(this)}/>)}
             <br />
