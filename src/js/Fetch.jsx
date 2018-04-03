@@ -10,8 +10,16 @@ export default class Fetch extends React.Component {
       }
     } 
   }
-  callPicture() { 
-    // e.preventDefault()
+  callPicture(e) { 
+    e.preventDefault()
+    // var divs = document.querySelectorAll('#products > div');
+    // var time = 0;
+    // for (let div of divs) {
+    //   setTimeout(function () {
+    //     div.classList.remove('faded');
+    //   }, time);
+    //   time += 100
+    // }
     const random = Math.floor(Math.random() * (800- 200)) + 200
    const fetchAsync = async() => {
       try{

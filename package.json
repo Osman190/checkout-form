@@ -20,6 +20,7 @@
     "pug-loader": "^2.3.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "webcomponent-qr-code": "^0.1.9",
     "webpack": "^3.10.0"
   },
   "devDependencies": {

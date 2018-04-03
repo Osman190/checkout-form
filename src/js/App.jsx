@@ -7,6 +7,7 @@ import jsPDF from "jspdf";
 import Fetch from './Fetch.jsx';
 
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -64,7 +65,6 @@ class App extends React.Component {
         state: '',
         zip: '',
       },
-      like: false,
       total: 0
     };
   }
@@ -73,33 +73,36 @@ class App extends React.Component {
   // }
 
 
-  userInfo(id, value) {
+  userInfo(index, value) {
     let data = this.state.billingInfo;
     console.log(data);
-    data[id] = value;
+    data[index] = value;
     console.log(data);
-    this.setState({billingInfo: data});
+    this.setState({ billingInfo: data });
     //localStorage.setItem("infoData", JSON.stringify({billing: this.state.billingInfo}))
   }
 
-  printPDF() {
+  printPDF(e) {
+    e.preventDefault()
     var doc = new jsPDF();
     doc.text('Hello world!', 10, 10);
     doc.save('a4.pdf');
   }
 
+
   updateItem(id, action) {
-    var data = [...this.state.data];
-    console.log(data[id].amount);
-    if (action === "like")
-      data[id].like = !data[id].like;
+    console.log(id)
+    var NewArrayFromDataAbove = [...this.state.data];
+    console.log(NewArrayFromDataAbove[id].amount);
+    if (action === 'like')
+      NewArrayFromDataAbove[id].like = !NewArrayFromDataAbove[id].like;
     else if (action)
-      data[id].amount++;
-    else if (data[id].amount > 0)
-      data[id].amount--;
-    var totalPrice = data.map((item) => (item.price * item.amount)).reduce((a, b) => a + b, 0);
-    console.log(data[id].amount);
-    this.setState((e) => ({ data: data }, { total: totalPrice }));
+      NewArrayFromDataAbove[id].amount++;
+    else if (NewArrayFromDataAbove[id].amount > 0)
+      NewArrayFromDataAbove[id].amount--;
+    var totalPrice = NewArrayFromDataAbove.map((item) => (item.price * item.amount)).reduce((a, b) => a + b, 0);
+    console.log(NewArrayFromDataAbove[id].amount);
+    this.setState((e) => ({ data: NewArrayFromDataAbove }, { total: totalPrice }));
     //localStorage.setItem('cart', JSON.stringify(this.state));
   }
 
